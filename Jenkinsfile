@@ -11,7 +11,7 @@ pipeline {
         stage('merge') {
             steps {
                 sh "git merge origin/develop --no-ff"
-                sh "git push -u origin release"
+                sh "git push -u origin Releas"
             }
         }
         stage ( 'package' ) {
@@ -22,12 +22,12 @@ pipeline {
         stage('archive artifacts') {
             steps {
             archive includes: "**/target/*.jar"
-       } 
+                 } 
         }
         stage('junit test results') {
             steps {
                 junit testResults: "**/target/surefire-reports/*.xml"
             }
         }
-     }
+    }
 }
