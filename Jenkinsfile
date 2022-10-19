@@ -8,6 +8,12 @@ pipeline {
                   url:'https://github.com/madhu0018/shopizer.git' 
                 }
         }
+        stage('merge') {
+            steps {
+                sh "git merge origin/develop --no-ff"
+                sh "git push -u origin release"
+            }
+        }
         stage ( 'package' ) {
             steps {
                 sh 'mvn package'
